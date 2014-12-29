@@ -1,6 +1,6 @@
 # generator-bnsf [![Build Status](https://secure.travis-ci.org/apsavin/generator-bnsf.png?branch=master)](https://travis-ci.org/apsavin/generator-bnsf)
 
-> [Yeoman](http://yeoman.io) generator
+> [Yeoman](http://yeoman.io) generator for [bnsf](https://github.com/apsavin/bnsf)
 
 
 ## Getting Started
