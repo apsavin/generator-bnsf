@@ -1,0 +1,5 @@
+- id: api
+  path: /api
+
+- id: page-index
+  path: /
