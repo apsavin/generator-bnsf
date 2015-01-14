@@ -1,3 +1,5 @@
 block('page-index').content()(function () {
     return 'page-index';
 });
+
+block('page-index').elem('title').content()('main page');

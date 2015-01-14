@@ -23,8 +23,7 @@ describe('bnsf:page', function () {
     it('creates page files', function () {
         assert.file([
             'desktop.blocks/page-name/page-name.bemtree',
-            'desktop.blocks/page-name/page-name.deps.js',
-            'desktop.blocks/page-name/page-name.vanilla.js'
+            'desktop.blocks/page-name/page-name.deps.js'
         ]);
     });
 
