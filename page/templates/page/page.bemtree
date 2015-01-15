@@ -1,3 +1,5 @@
 block('<%= fullName %>').content()(function () {
     return '<%= fullName %>';
 });
+
+block('<%= fullName %>').elem('title').content()('<%= title %>');
