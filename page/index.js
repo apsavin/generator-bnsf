@@ -1,47 +1,28 @@
 'use strict';
-var yeoman = require('yeoman-generator'),
-    path = require('path'),
-    fs = require('fs');
+var PageGenerator = require('../helpers/PageGenerator');
 
 /**
- * @const {string}
+ * @class PageBlockGenerator
+ * @extends PageGenerator
  */
-var PREFIX = 'page-';
-
-/**
- * @const {string}
- */
-var STUB_BLOCK_NAME = 'page';
-
-module.exports = yeoman.generators.NamedBase.extend({
+module.exports = PageGenerator.extend(/**@lends PageBlockGenerator#*/{
 
     /**
      * @public
      */
     initializing: function () {
-
-        /**
-         * @public for templates
-         * @type {string}
-         */
-        this.fullName = PREFIX + this.name;
+        PageGenerator.prototype.initializing.call(this);
 
         /**
          * @public for templates
          * @type {string}
          */
         this.title = this.name;
-
-        /**
-         * @type {object}
-         * @private
-         */
-        this._properties = {};
     },
 
     /**
      * @returns {Array.<object>}
-     * @private
+     * @protected
      */
     _getPrompts: function () {
         return [
@@ -56,18 +37,8 @@ module.exports = yeoman.generators.NamedBase.extend({
                 name: 'path',
                 message: 'Enter your page path:',
                 'default': '/' + this.name
-            },
-            {
-                type: 'input',
-                name: 'directory',
-                message: 'Enter your pages directory:',
-                'default': 'desktop.blocks',
-                store: true,
-                validate: function (input) {
-                    return this._isDirPathValid(input) || 'Please enter a valid name';
-                }.bind(this)
-            },
-            {
+            }
+        ].concat(PageGenerator.prototype._getPrompts.call(this), [{
                 type: 'input',
                 name: 'routing',
                 message: 'Enter path to your routing file:',
@@ -76,8 +47,7 @@ module.exports = yeoman.generators.NamedBase.extend({
                 validate: function (input) {
                     return this._isFilePathValid(input, /^[0-9a-zA-Z._\/-]+\.routing\.yml$/g) || 'Please enter a valid path';
                 }.bind(this)
-            },
-            {
+            }, {
                 type: 'input',
                 name: 'bemdecl',
                 message: 'Enter path to your bemdecl file:',
@@ -86,45 +56,35 @@ module.exports = yeoman.generators.NamedBase.extend({
                 validate: function (input) {
                     return this._isFilePathValid(input, /^[0-9a-zA-Z._\/-]+\.bemdecl\.js$/g) || 'Please enter a valid path';
                 }.bind(this)
-            }
-        ];
+            }]);
     },
 
     /**
+     * we need this because yeoman looks only on methods defined in
+     * prototype of instance, not in parent's prototype
      * @public
      */
     prompting: function () {
-        var done = this.async(),
-            prompts = this._getPrompts();
-        this.prompt(prompts, function (props) {
-            this.title = props.title;
-            this._properties = props;
-            done();
-        }.bind(this));
+        PageGenerator.prototype.prompting.call(this);
+    },
+
+    /**
+     * @param {function} done
+     * @param {object} props
+     * @protected
+     */
+    _onPromptingEnd: function (done, props) {
+        this.title = props.title;
+        PageGenerator.prototype._onPromptingEnd.apply(this, arguments);
     },
 
     /**
      * @public
      */
     writing: function () {
-        this._writePageFiles();
+        PageGenerator.prototype.writing.call(this);
         this._updateAppRouting();
         this._updateAppDeclaration();
-    },
-
-    /**
-     * @private
-     */
-    _writePageFiles: function () {
-        var sourceRoot = this.sourceRoot(),
-            files = this.expandFiles(STUB_BLOCK_NAME + '/*', {cwd: sourceRoot}),
-            pageDirectory = this.destinationPath(this._properties.directory, this.fullName);
-
-        this._.each(files, function (filePath) {
-            var src = this.templatePath(filePath),
-                dest = path.join(pageDirectory, path.basename(filePath).replace(STUB_BLOCK_NAME, this.fullName));
-            this.template(src, dest);
-        }, this);
     },
 
     /**
@@ -139,15 +99,6 @@ module.exports = yeoman.generators.NamedBase.extend({
             return false;
         }
         return true;
-    },
-
-    /**
-     * @param {string} dir
-     * @returns {boolean}
-     * @private
-     */
-    _isDirPathValid: function (dir) {
-        return /^[0-9a-zA-Z._-]+$/g.test(dir) && fs.existsSync(this.destinationPath(dir));
     },
 
     /**
