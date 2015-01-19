@@ -11,12 +11,17 @@ gulp.task('build', shell.task([
     'node ./node_modules/.bin/bem make -v error'
 ]));
 
-spawn('node', [
+var bemServerProcess = spawn('node', [
     './node_modules/.bin/bem',
     'server',
     '-v',
     'error'
 ]);
+
+bemServerProcess.stderr.on('data', function (data) {
+    console.log('' + data);
+    process.exit();
+});
 
 var nodemonInstance;
 gulp.task('run', ['build'], function () {
@@ -39,3 +44,4 @@ gulp.task('dev', ['run'], function () {
 });
 
 gulp.task('default', ['dev']);
+
