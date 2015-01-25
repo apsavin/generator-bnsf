@@ -1,6 +1,6 @@
 {
   "name": "generator-bnsf",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "Yeoman generator for bnsf",
   "license": "MIT",
   "main": "app/index.js",
@@ -19,11 +19,6 @@
   "scripts": {
     "test": "mocha"
   },
-  "files": [
-    "app",
-    "page",
-    "pagebrowserjs"
-  ],
   "keywords": [
     "yeoman-generator"
   ],
