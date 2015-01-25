@@ -5,7 +5,7 @@ modules.define('<%= fullName %>', ['i-page'], function (provide, Page) {
 
         /**
          * @param {RequestData} data
-         * @returns {Promise}
+         * @returns {?Promise}
          */
         update: function (data) {
 
