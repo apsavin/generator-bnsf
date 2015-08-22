@@ -22,17 +22,17 @@ describe('bnsf:page', function () {
 
     it('creates page files', function () {
         assert.file([
-            'desktop.blocks/page-name/page-name.bemtree',
-            'desktop.blocks/page-name/page-name.deps.js'
+            'blocks/page-name/page-name.bemtree',
+            'blocks/page-name/page-name.deps.js'
         ]);
     });
 
     it('updates config files', function () {
         assert.fileContent([[
-            'desktop.bundles/index/index.bemdecl.js',
+            'bundles/index/index.bemdecl.js',
             /page-name/g
         ], [
-            'desktop.bundles/index/index.routing.yml',
+            'bundles/index/index.routing.yml',
             /page-name/g
         ]]);
     });

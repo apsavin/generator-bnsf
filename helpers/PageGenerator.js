@@ -47,7 +47,7 @@ module.exports = yeoman.generators.NamedBase.extend(/**@lends PageGenerator#*/{
                 type: 'input',
                 name: 'directory',
                 message: 'Enter your pages directory:',
-                'default': 'desktop.blocks',
+                'default': 'blocks',
                 store: true,
                 validate: function (input) {
                     return this._isDirPathValid(input) || 'Please enter a valid name';

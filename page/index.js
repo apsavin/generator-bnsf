@@ -42,7 +42,7 @@ module.exports = PageGenerator.extend(/**@lends PageBlockGenerator#*/{
                 type: 'input',
                 name: 'routing',
                 message: 'Enter path to your routing file:',
-                'default': 'desktop.bundles/index/index.routing.yml',
+                'default': 'bundles/index/index.routing.yml',
                 store: true,
                 validate: function (input) {
                     return this._isFilePathValid(input, /^[0-9a-zA-Z._\/-]+\.routing\.yml$/g) || 'Please enter a valid path';
@@ -51,7 +51,7 @@ module.exports = PageGenerator.extend(/**@lends PageBlockGenerator#*/{
                 type: 'input',
                 name: 'bemdecl',
                 message: 'Enter path to your bemdecl file:',
-                'default': 'desktop.bundles/index/index.bemdecl.js',
+                'default': 'bundles/index/index.bemdecl.js',
                 store: true,
                 validate: function (input) {
                     return this._isFilePathValid(input, /^[0-9a-zA-Z._\/-]+\.bemdecl\.js$/g) || 'Please enter a valid path';

@@ -14,15 +14,10 @@ describe('bnsf:app', function () {
 
     it('creates files', function () {
         assert.file([
-            '.bem/levels/blocks.js',
-            '.bem/levels/bundles.js',
-            '.bem/level.js',
-            '.bem/make.js',
-            'desktop.blocks/.bem/level.js',
-            'desktop.bundles/.bem/level.js',
-            'desktop.bundles/index/index.api.routing.yml',
-            'desktop.bundles/index/index.bemdecl.js',
-            'desktop.bundles/index/index.routing.yml',
+            '.enb/make.js',
+            'bundles/index/index.api.routing.yml',
+            'bundles/index/index.bemdecl.js',
+            'bundles/index/index.routing.yml',
             '.bowerrc',
             '.editorconfig',
             '.gitignore',
