@@ -3,7 +3,8 @@
 ## How to start:
 
 ```bash
-$ gulp
+npm i
+gulp
 ```
 
 ##Pro tips:

@@ -10,4 +10,4 @@ node_modules/
 !*bundles*/*/*.bemdecl.js
 !*bundles*/*/*.min.js
 !*bundles*/*/*.yml
-!*bundles*/.bem/*
+bundles/index/index.parameters.yml

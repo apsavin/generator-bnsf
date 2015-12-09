@@ -110,8 +110,8 @@ module.exports = function(config) {
             [techs.prependYm, { source: '?.node.js', target: '_?.node.js' }],
 
             // borschik
-            [techs.borschik, { sourceTarget: '?.js', destTarget: '_?.js', freeze: true, minify: isProd }],
-            [techs.borschik, { sourceTarget: '?.css', destTarget: '_?.css', tech: 'cleancss', freeze: true, minify: isProd }]
+            [techs.borschik, { sourceTarget: '?.js', destTarget: '_?.js', freeze: isProd, minify: isProd }],
+            [techs.borschik, { sourceTarget: '?.css', destTarget: '_?.css', tech: 'cleancss', freeze: isProd, minify: isProd }]
         ]);
 
         nodeConfig.addTargets(['_?.css', '_?.js', '_?.node.js']);
